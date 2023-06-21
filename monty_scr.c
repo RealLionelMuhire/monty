@@ -98,7 +98,8 @@ int is_line(char *line_input, char *delimiter)
 void (*get_opcode(char *opcode))(stack_t**, unsigned int)
 {
 	instruction_t opcode_fnc[] = {
-		{"push", _push}'
+		{"push", _push}
+		{"pall", _pall}
 		{NULL, NULL}
 	};
 	int a;
