@@ -9,8 +9,8 @@
  */
 int main(int argc, char **argv)
 {
-	FILe *op_script;
-	int exit_stt;
+	FILE *op_script;
+	int exit_stt = EXIT_SUCCESS;
 
 	if (argc != 2)
 		return (error_usage());
@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	if (op_script == NULL)
 		return (error_open(argv[1]));
 
-	exit = monty_script(op_script);
+	exit_stt = monty_script(op_script);
 
 	fclose(op_script);
 	return (exit_stt);
