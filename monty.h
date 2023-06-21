@@ -49,14 +49,27 @@ int error_usage(void);
 int error_open(void);
 int error_alloc(void);
 int unknown_err(char *op, unsigned int line_num);
+int error_pop(unsigned int l_count);
+int error_pint(unsigned int l_count);
+int stack_error(unsigned int l_count, char *op);
 
 /** monty script interpreter*/
 int monty_script(FILE *op_script);
 int is_line(char *line_input, char *delimiter);
 void (*get_opcode(char *opcode))(stack_t**, unsigned int);
+unsigned int tok_len(void);
 
 /** stack handler*/
 void free_stack(stack_t **stack);
 int stack_initial(stack_t **stack);
+int check_md(stack_t *stack);
+int none_err_int(unsigned int l_count);
+
+/** opcodes*/
+void _push(stack_t **stack, unsigned int l_count);
+void _pall(stack_t **stack, unsigned int l_count);
+void _pint(stack_t **stack, unsigned int l_count);
+void _pop(stack_t **stack, unsigned int l_count);
+void _swap(stack_t **stack, unsigned int l_count);
 
 #endif 
