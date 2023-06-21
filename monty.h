@@ -8,6 +8,10 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
+#define DELIMITER " \n\t\a\b"
+
+extern char **opcode_tok;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -37,3 +41,10 @@ typedef struct instruction_s
         char *opcode;
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+
+/** error handler*/
+int error_usage(void);
+int error_open(void);
+
+/** monty script interpreter*/
+int monty_script(FILE *op_script);

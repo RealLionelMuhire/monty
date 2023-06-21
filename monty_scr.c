@@ -24,7 +24,7 @@ int monty_script(FILE *op_script)
 		opcode_tok = strtow(line_input, DELIMITER);
 		if (opcode_tok == NULL)
 		{
-			if (is_delim(line_input , DELIMITER))
+			if (is_line(line_input , DELIMITER))
 				continue;
 			free_stack(&stack);
 			return error_alloc();
@@ -66,5 +66,61 @@ int monty_script(FILE *op_script)
 }
 
 /**
+ * is_line - checks if a line contains delimiter
+ * @line_inputL pointer to line
+ * @delimiter: delim characters
+ *
+ * Return: 1 if there is delimiter, else 0
  */
+int is_line(char *line_input, char *delimiter)
+{
+	int a, b;
 
+	for (a = 0; line_input[a]; a++)
+	{
+		for (b = 0; delimiter[b]; b++)
+		{
+			if (line_input[a] == delimiter[b])
+				break;
+		}
+		if (delimiter[b] == '\0')
+			return (0);
+	}
+	return (1);
+}
+
+/**
+ * get_opcode - opcode functions
+ * @opcode: opcodes
+ *
+ * Return: pointer to functions
+ */
+void (*get_opcode(char *opcode))(stack_t**, unsigned int)
+{
+	instruction_t opcode_fnc[] = {
+		{"push", _push}'
+		{NULL, NULL}
+	};
+	int a;
+
+	for (a = 0; opcode_fnc[a].opcode; a++)
+	{
+		if (strcmp(opcode, opcode_fnc[a].opcode) == 0)
+			return (opcode_fnc[a].f);
+	}
+	return (NULL);
+}
+
+/**
+ * tok_len - length of tokens
+ *
+ * Return: length of the tokens
+ */
+unsigned int tok_len(void)
+{
+	unsigned int token_len = 0;
+
+	while (opcode_tok[token_len])
+		token_len++;
+	return (token_len);
+}
