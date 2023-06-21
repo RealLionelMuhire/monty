@@ -49,3 +49,21 @@ void _push(stack_t **stack, unsigned int l_count)
 		tmp->next = new;
 	}
 }
+
+/**
+ * _pall - print all elements in the stack and queue
+ * @l_count: is the line counter
+ * @stack: head of linked list of stacks
+ */
+
+void _pall(stack_t **stack, unsigned int l_count)
+{
+	stack_t *curr = (*stack)->next;
+
+	while (curr)
+	{
+		printf("%d\n", curr->n);
+		curr = curr->next;
+	}
+	(void)l_count;
+}
