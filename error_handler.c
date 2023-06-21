@@ -28,7 +28,7 @@ int error_open(void)
  */
 int error_alloc(void)
 {
-	fprintf(stderr, "Error: allocation failed\n");
+	fprintf(stderr, "Error: malloc failed\n");
 	return (EXIT_FAILURE);
 }
 
@@ -38,6 +38,6 @@ int error_alloc(void)
  */
 int unknown_err(char *op, unsigned int line_num)
 {
-	fprintf(stderr, "Error: Unknown opcode %s\n", op, line_num);
+	fprintf(stderr, "Error: Unknown instruction %s\n", op, line_num);
 	return (EXIT_FAILURE);
 }

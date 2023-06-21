@@ -45,6 +45,16 @@ typedef struct instruction_s
 /** error handler*/
 int error_usage(void);
 int error_open(void);
+int error_alloc(void);
+int unknown_err(char *op, unsigned int line_num);
 
 /** monty script interpreter*/
 int monty_script(FILE *op_script);
+int is_line(char *line_input, char *delimiter);
+void (*get_opcode(char *opcode))(stack_t**, unsigned int);
+
+/** stack handler*/
+void free_stack(stack_t **stack);
+int stack_initial(stack_t **stack);
+
+#endif 
