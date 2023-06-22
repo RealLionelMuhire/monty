@@ -112,7 +112,7 @@ void _pop(stack_t **stack, unsigned int l_count)
  */
 void _swap(stack_t **stack, unsigned int l_count)
 {
-	stack_t curr;
+	stack_t *curr;
 
 	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
 	{
@@ -120,13 +120,13 @@ void _swap(stack_t **stack, unsigned int l_count)
 		return;
 	}
 
-	curr = (*stack)->next->next;
-	(*stack)->next->next = curr->next;
-	(*stack)->next->prev = curr;
+	curr = (*stack)->next;
+	(*stack)->next = curr->next;
+	(*stack)->prev = curr;
 
 	if (curr->next)
-		curr->next->prev = (*stack)->next;
-	curr->next = (*stack)->next;
-	curr->prev = *stack;
-	(*stack)->next = curr;
+		curr->next->prev = (*stack);
+	curr->next = (*stack);
+	curr->prev = NULL;
+	(*stack) = curr;
 }
