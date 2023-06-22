@@ -47,7 +47,7 @@ typedef struct instruction_s
 
 /** error handler*/
 int error_usage(void);
-int error_open(void);
+int error_open(char *filename);
 int error_alloc(void);
 int unknown_err(char *op, unsigned int line_num);
 int error_pop(unsigned int l_count);

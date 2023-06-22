@@ -1,4 +1,4 @@
-#include "mothy.h"
+#include "monty.h"
 
 /**
  * _push - adds to the head of stack

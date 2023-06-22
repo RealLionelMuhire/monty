@@ -16,7 +16,7 @@ int error_usage(void)
  * Return: always EXIT_FAILURE
  */
 
-int error_open(void)
+int error_open(char *filename)
 {
 	fprintf(stderr, "Error: Can't open file %s\n", filename);
 	return (EXIT_FAILURE);
