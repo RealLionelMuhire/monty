@@ -52,6 +52,7 @@ int unknown_err(char *op, unsigned int line_num);
 int error_pop(unsigned int l_count);
 int error_pint(unsigned int l_count);
 int stack_error(unsigned int l_count, char *op);
+void opcode_tok_err(int err_code);
 
 /** monty script interpreter*/
 int monty_script(FILE *op_script);
@@ -72,4 +73,12 @@ void _pint(stack_t **stack, unsigned int l_count);
 void _pop(stack_t **stack, unsigned int l_count);
 void _swap(stack_t **stack, unsigned int l_count);
 
-#endif 
+
+/*tools and tools2*/
+char *get_integer(int num);
+void fill_numbase_buffer(unsigned int num,
+		unsigned int base, char *buffer, int buffer_size);
+unsigned int absolute_value(int i);
+int calculate_numbase_length(unsigned int num, unsigned int base);
+
+#endif
