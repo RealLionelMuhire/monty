@@ -57,9 +57,9 @@ void opcode_tok_err(int err_code)
 
 	len = tok_len();
 	new_toks = malloc(sizeof(char *) * (len + 2));
-	if (!op_toks)
+	if (!new_toks)
 	{
-		malloc_error();
+		error_alloc();
 		return;
 	}
 
@@ -70,7 +70,7 @@ void opcode_tok_err(int err_code)
 	if (!exit_str)
 	{
 		free(new_toks);
-		malloc_error();
+		error_alloc();
 		return;
 	}
 	new_toks[i++] = exit_str;
