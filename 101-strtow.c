@@ -1,58 +1,80 @@
 #include "monty.h"
 /**
- * strtow - Splits a string into an array of words.
- * @str: The input string.
+ * count_tokens - Counts the number of tokens in a string.
+ * @str: The string to count tokens from.
+ * @delim: The delimiter character.
  *
- * Return: A pointer to an array of strings (words). NULL on failure or if str is empty.
+ * Return: The number of tokens.
  */
-char **strtow(char *str)
+static int count_tokens(const char *str, char delim)
 {
+	int count = 0;
+	int i = 0;
+	int len = strlen(str);
 
-	int i, j, k, word_count = 0;
-	char **words = (NULL);
-
-
-	if (str == NULL || *str == '\0')
-		return (NULL);
-
-	
-	for (i = 0; str[i] != '\0'; i++)
+	while (i < len)
 	{
-		if (str[i] != ' ' && (i == 0 || str[i - 1] == ' '))
-			word_count++;
+		while (str[i] == delim)
+			i++;
+
+		if (str[i] != '\0')
+			count++;
+
+		while (str[i] != delim && str[i] != '\0')
+			i++;
 	}
 
-	if (word_count == 0)
-		return (NULL);
+	return (count);
+}
 
-	words = malloc(sizeof(char *) * (word_count + 1));
-	if (words == NULL)
-		return (NULL);
+/**
+ * strtow - Splits a string into an array of tokens.
+ * @str: The string to split.
+ * @delim: The delimiter character.
+ *
+ * Return: The array of tokens, or NULL on failure.
+ */
+char **strtow(const char *str, char delim)
+{
+	if (str == NULL || str[0] == '\0')
+		return NULL;
 
-	for (i = 0, j = 0; str[i] != '\0'; i++)
+	int num_tokens = count_tokens(str, delim);
+	char **tokens = malloc((num_tokens + 1) * sizeof(char *));
+	if (tokens == NULL)
+		return NULL;
+
+	int i = 0;
+	int token_len = 0;
+	int token_index = 0;
+	int str_len = strlen(str);
+
+	while (i <= str_len)
 	{
-		if (str[i] != ' ')
+		if (str[i] != delim && str[i] != '\0')
 		{
-			k = 0;
-			while (str[i + k] != ' ' && str[i + k] != '\0')
-				k++;
-
-			words[j] = malloc(sizeof(char) * (k + 1));
-			if (words[j] == NULL)
+			token_len++;
+		}
+		else if (token_len > 0)
+		{
+			tokens[token_index] = malloc((token_len + 1) * sizeof(char));
+			if (tokens[token_index] == NULL)
 			{
-				for (j--; j >= 0; j--)
-					free(words[j]);
-				free(words);
-				return (NULL);
+				while (token_index > 0)
+					free(tokens[--token_index]);
+				free(tokens);
+				return NULL;
 			}
 
-			for (k = 0; str[i] != ' ' && str[i] != '\0'; i++, k++)
-				words[j][k] = str[i];
-			words[j][k] = '\0';
-			j++;
+			strncpy(tokens[token_index], str + i - token_len, token_len);
+			tokens[token_index][token_len] = '\0';
+			token_len = 0;
+			token_index++;
 		}
+
+		i++;
 	}
 
-	words[j] = NULL;
-	return (words);
+	tokens[token_index] = NULL;
+	return (tokens);
 }

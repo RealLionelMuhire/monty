@@ -56,10 +56,10 @@ int monty_script(FILE *op_script)
 		free_tok();
 	}
 	free_stack(&stack);
-	if (line_input && line_input == 0)
+	if (line_input && *line_input == 0)
 	{
 		free(line_input);
-		return (error_alloc);
+		return (error_alloc());
 	}
 	free(line_input);
 	return (exit_stt);

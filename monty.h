@@ -7,6 +7,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
+#include <string.h>
 
 #define DELIMITER " \n\t\a\b"
 #define STACK 0
@@ -79,9 +80,12 @@ char *get_integer(int num);
 void fill_numbase_buffer(unsigned int num,
 		unsigned int base, char *buffer, int buffer_size);
 unsigned int absolute_value(int i);
+void free_tok(void);
 int calculate_numbase_length(unsigned int num, unsigned int base);
 
 
 /*strtow*/
-char **strtow(char *str);
+char **strtow(const char *str, char delim);
+
+
 #endif

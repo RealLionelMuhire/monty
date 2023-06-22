@@ -61,4 +61,22 @@ void fill_numbase_buffer(unsigned int num, unsigned int base,
 
 
 
+/**
+ * free_tok - frees the tokens of op_arr str
+ */
 
+void free_tok(void)
+{
+	unsigned int i = 0;
+
+	if (opcode_tok == NULL)
+		return;
+
+	while(opcode_tok[i])
+	{
+		free(opcode_tok[i]);
+		i++;
+	}
+
+	free(opcode_tok);
+}
