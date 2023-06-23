@@ -19,7 +19,7 @@ int monty_script(FILE *op_script)
 	if (stack_initial(&stack) == EXIT_FAILURE)
 		return EXIT_FAILURE;
 
-	while (getline(&line_input, &len, op_script) != -1)
+	while (_getline(&line_input, &len, op_script) != -1)
 	{
 		line_num++;
 		opcode_tok = strtow(line_input, DELIMITER);
