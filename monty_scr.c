@@ -1,4 +1,5 @@
 #include "monty.h"
+#include <stdio.h>
 
 /**
  * monty_script - execute monty script bytecode
@@ -29,7 +30,7 @@ int monty_script(FILE *op_script)
 			free_stack(&stack);
 			return error_alloc();
 		}
-		else if (opcode_tok[0][0] == "#")
+		else if (opcode_tok[0][0] == '#')
 		{
 			free_tok();
 			continue;
@@ -56,7 +57,7 @@ int monty_script(FILE *op_script)
 		free_tok();
 	}
 	free_stack(&stack);
-	if (line_input && *line_input == 0)
+	if (line_input && *line_input == '\0')
 	{
 		free(line_input);
 		return (error_alloc());
