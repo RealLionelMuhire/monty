@@ -94,7 +94,7 @@ void _pop(stack_t **stack, unsigned int l_count)
 
 	if ((*stack)->next == NULL)
 	{
-		set_op_tok_error(error_pop(l_count));
+		set_op_token_error(error_pop(l_count));
 		return;
 	}
 	next = (*stack)->next->next;

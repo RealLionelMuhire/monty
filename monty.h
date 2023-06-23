@@ -91,6 +91,8 @@ bool is_integer(const char *str);
 
 /*strtow*/
 char **strtow(const char *str, char *delim);
+/*getline*/
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 
 
 #endif
