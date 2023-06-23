@@ -39,7 +39,7 @@ int monty_script(FILE *op_script)
 		if (opcode_fnc == NULL)
 		{
 			free_stack(&stack);
-			exit_stt = unknown_err(op_toks[0], line_num);
+			exit_stt = unknown_err(opcode_tok[0], line_num);
 			free_tok();
 			break;
 		}

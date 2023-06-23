@@ -16,7 +16,7 @@ void _push(stack_t **stack, unsigned int l_count)
 		return;
 	}
 
-	if (opcode_tok[1] == NULL || !is_integer(op_toks[1]))
+	if (opcode_tok[1] == NULL || !is_integer(opcode_tok[1]))
 	{
 		set_op_token_error(none_err_int(l_count));
 		free(new);
