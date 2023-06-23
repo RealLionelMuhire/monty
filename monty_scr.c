@@ -11,7 +11,7 @@ int monty_script(FILE *op_script)
 	stack_t *stack = NULL;
 	char *line_input = NULL;
 	size_t len = 0;
-	unsigned int line_num = 0;
+	unsigned int line_num = 0, prev_len = 0;
 	int exit_stt = EXIT_SUCCESS;
 	void (*opcode_fnc)(stack_t **, unsigned int);
 

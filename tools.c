@@ -91,7 +91,7 @@ void set_op_token_error(int error_code)
 	char *exit_str = NULL;
 	char **new_tokens = NULL;
 
-	tokens_len = token_array_length();
+	tokens_len = tok_len();
 	new_tokens = malloc(sizeof(char *) * (tokens_len + 2));
 	if (!opcode_tok)
 	{
