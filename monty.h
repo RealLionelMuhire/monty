@@ -44,6 +44,7 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
+extern char **op_toks;
 
 /** error handler*/
 int error_usage(void);
@@ -85,7 +86,7 @@ int calculate_numbase_length(unsigned int num, unsigned int base);
 
 
 /*strtow*/
-char **strtow(const char *str, char delim);
+char **strtow(const char *str, char *delim);
 
 
 #endif

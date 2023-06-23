@@ -6,7 +6,7 @@
  *
  * Return: The number of tokens.
  */
-static int count_tokens(const char *str, char delim)
+static int count_tokens(const char *str, char *delim)
 {
 	int count = 0;
 	int i = 0;
@@ -14,13 +14,13 @@ static int count_tokens(const char *str, char delim)
 
 	while (i < len)
 	{
-		while (str[i] == delim)
+		while (str[i] && str[i] == *delim)
 			i++;
 
 		if (str[i] != '\0')
 			count++;
 
-		while (str[i] != delim && str[i] != '\0')
+		while (str[i] && str[i] != *delim)
 			i++;
 	}
 
@@ -34,24 +34,27 @@ static int count_tokens(const char *str, char delim)
  *
  * Return: The array of tokens, or NULL on failure.
  */
-char **strtow(const char *str, char delim)
+char **strtow(const char *str, char *delim)
 {
-	if (str == NULL || str[0] == '\0')
-		return NULL;
-
-	int num_tokens = count_tokens(str, delim);
-	char **tokens = malloc((num_tokens + 1) * sizeof(char *));
-	if (tokens == NULL)
-		return NULL;
-
+	char **tokens;
+	
 	int i = 0;
 	int token_len = 0;
 	int token_index = 0;
-	int str_len = strlen(str);
+	int str_len = strlen(str), num_tokens;
+
+	if (str == NULL || str[0] == '\0')
+		return (NULL);
+
+	num_tokens = count_tokens(str, delim);
+	tokens = malloc((num_tokens + 1) * sizeof(char *));
+	if (tokens == NULL)
+		return (NULL);
+
 
 	while (i <= str_len)
 	{
-		if (str[i] != delim && str[i] != '\0')
+		if (str[i] && str[i] != *delim)
 		{
 			token_len++;
 		}
@@ -63,7 +66,7 @@ char **strtow(const char *str, char delim)
 				while (token_index > 0)
 					free(tokens[--token_index]);
 				free(tokens);
-				return NULL;
+				return (NULL);
 			}
 
 			strncpy(tokens[token_index], str + i - token_len, token_len);

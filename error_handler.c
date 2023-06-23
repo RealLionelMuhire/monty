@@ -40,7 +40,7 @@ int error_alloc(void)
  */
 int unknown_err(char *op, unsigned int line_num)
 {
-	fprintf(stderr, "Error: Unknown instruction %s\n", op, line_num);
+	fprintf(stderr, "L%u: unknown instruction %s\n",  line_num, op);
 	return (EXIT_FAILURE);
 }
 
