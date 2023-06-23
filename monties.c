@@ -12,7 +12,7 @@ void _push(stack_t **stack, unsigned int l_count)
 
 	if (new == NULL)
 	{
-		set_op_tok_error(malloc_error());
+		set_op_token_error(malloc_error());
 		return;
 	}
 

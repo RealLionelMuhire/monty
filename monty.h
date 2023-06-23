@@ -55,6 +55,7 @@ int error_pop(unsigned int l_count);
 int error_pint(unsigned int l_count);
 int stack_error(unsigned int l_count, char *op);
 void opcode_tok_err(int err_code);
+int malloc_error(void);
 
 /** monty script interpreter*/
 int monty_script(FILE *op_script);
@@ -83,6 +84,7 @@ void fill_numbase_buffer(unsigned int num,
 unsigned int absolute_value(int i);
 void free_tok(void);
 int calculate_numbase_length(unsigned int num, unsigned int base);
+void set_op_token_error(int error_code);
 
 
 /*strtow*/
