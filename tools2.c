@@ -33,3 +33,32 @@ int calculate_numbase_length(unsigned int num, unsigned int base)
 	}
 	return (len);
 }
+
+/**
+ * is_integer - checks if it is an int
+ * @str: string to check
+ * Return: always true or false, if it is an int or not
+*/
+bool is_integer(const char *str)
+{
+	if (str == NULL || *str == '\0')
+	{
+		return (false);
+	}
+
+	if (*str == '-' || *str == '+')
+	{
+		str++;
+	}
+
+	while (*str != '\0')
+	{
+		if (*str < '0' || *str > '9')
+		{
+			return (false);
+		}
+		str++;
+	}
+
+	return (true);
+}

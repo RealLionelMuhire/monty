@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdbool.h>
 
 #define DELIMITER " \n\t\a\b"
 #define STACK 0
@@ -85,6 +86,7 @@ unsigned int absolute_value(int i);
 void free_tok(void);
 int calculate_numbase_length(unsigned int num, unsigned int base);
 void set_op_token_error(int error_code);
+bool is_integer(const char *str);
 
 
 /*strtow*/
