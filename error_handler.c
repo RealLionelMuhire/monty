@@ -46,8 +46,8 @@ int unknown_err(char *op, unsigned int line_num)
 
 
 /**
- * opcode_tok_err - Sets last element of op_toks to be an error code.
- * @err_code: Integer to store as a string in op_toks.
+ * opcode_tok_err - Sets last element of opcode_tok to be an error code.
+ * @err_code: Integer to store as a string in opcode_tok.
  */
 void opcode_tok_err(int err_code)
 {
@@ -64,7 +64,7 @@ void opcode_tok_err(int err_code)
 	}
 
 	for (i = 0; i < len; i++)
-		new_toks[i] = op_toks[i];
+		new_toks[i] = opcode_tok[i];
 
 	exit_str = get_integer(err_code);
 	if (!exit_str)
@@ -75,6 +75,6 @@ void opcode_tok_err(int err_code)
 	}
 	new_toks[i++] = exit_str;
 	new_toks[i] = NULL;
-	free(op_toks);
-	op_toks = new_toks;
+	free(opcode_tok);
+	opcode_tok = new_toks;
 }
