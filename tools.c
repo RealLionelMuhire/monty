@@ -72,11 +72,46 @@ void free_tok(void)
 	if (opcode_tok == NULL)
 		return;
 
-	while(opcode_tok[i])
+	while (opcode_tok[i])
 	{
 		free(opcode_tok[i]);
 		i++;
 	}
 
 	free(opcode_tok);
+}
+
+/**
+ * set_op_token_error - Sets the last element of op_tokens to be an error code.
+ * @error_code: Integer to store as a string in op_tokens.
+ */
+void set_op_token_error(int error_code)
+{
+	int tokens_len = 0, i = 0;
+	char *exit_str = NULL;
+	char **new_tokens = NULL;
+
+	tokens_len = token_array_length();
+	new_tokens = malloc(sizeof(char *) * (tokens_len + 2));
+	if (!opcode_tok)
+	{
+		malloc_error();
+		return;
+	}
+	while (i < tokens_len)
+	{
+		new_tokens[i] = opcode_tok[i];
+		i++;
+	}
+	exit_str = get_integer(error_code);
+	if (!exit_str)
+	{
+		free(new_tokens);
+		malloc_error();
+		return;
+	}
+	new_tokens[i++] = exit_str;
+	new_tokens[i] = NULL;
+	free(opcode_tok);
+	opcode_tok = new_tokens;
 }
