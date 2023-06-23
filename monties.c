@@ -77,7 +77,7 @@ void _pint(stack_t **stack, unsigned int l_count)
 {
 	if ((*stack)->next == NULL)
 	{
-		set_op_tok_error(error_pint(l_count));
+		set_op_token_error(error_pint(l_count));
 		return;
 	}
 	printf("%d\n", (*stack)->next->n);
