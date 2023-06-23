@@ -18,7 +18,7 @@ void _push(stack_t **stack, unsigned int l_count)
 
 	if (opcode_tok[1] == NULL || !is_valid_integer(opcode_tok[1]))
 	{
-		set_op_tok_error(none_err_int(l_count));
+		set_op_token_error(none_err_int(l_count));
 		free(new);
 		return;
 	}
@@ -116,7 +116,7 @@ void _swap(stack_t **stack, unsigned int l_count)
 
 	if ((*stack)->next == NULL || (*stack)->next->next == NULL)
 	{
-		set_op_tok_error(stack_error(l_count, "swap"));
+		set_op_token_error(stack_error(l_count, "swap"));
 		return;
 	}
 

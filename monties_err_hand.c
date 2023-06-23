@@ -36,3 +36,13 @@ int stack_error(unsigned int l_count, char *op)
 	fprintf(stderr, "L%u: can't %s, stack too short\n", l_count, op);
 	return (EXIT_FAILURE);
 }
+/**
+ * malloc_error - Memory alloc failure printer.
+ *
+ * Return: (EXIT_FAILURE) always.
+ */
+int malloc_error(void)
+{
+	fprintf(stderr, "Error: malloc failed\n");
+	return (EXIT_FAILURE);
+}
