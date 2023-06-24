@@ -61,7 +61,6 @@ void _pall(stack_t **stack, unsigned int l_count)
 {
 	stack_t *curr;
 
-	curr = (*stack)->next;
 	if (stack == NULL || *stack == NULL)
 		return;
 	curr = (*stack)->next;
