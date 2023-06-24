@@ -1,4 +1,5 @@
 #include "monty.h"
+char **opcode_tok;
 
 /**
  * _push - adds to the head of stack
