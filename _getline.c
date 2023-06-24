@@ -9,36 +9,41 @@
  */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
-	size_t buffer_size = 0;
-	size_t current_pos = 0;
-	int current_char;
+    size_t current_pos = 0;
+    int current_char;
     char *new_lineptr;
 
     if (lineptr == NULL || n == NULL || stream == NULL)
-		return (-1);
+        return (-1);
 
-	while ((current_char = fgetc(stream)) != EOF)
-	{
-		if (current_pos >= buffer_size - 1)
-		{
-			buffer_size += 128;
-			new_lineptr = realloc(*lineptr, buffer_size);
-			if (new_lineptr == NULL)
-				return (-1);
-			*lineptr = new_lineptr;
-			*n = buffer_size;
-		}
+    if (*lineptr == NULL || *n == 0) {
+        *n = 128;
+        *lineptr = malloc(*n);
+        if (*lineptr == NULL)
+            return (-1);
+    }
 
-		(*lineptr)[current_pos++] = (char)current_char;
+    while ((current_char = fgetc(stream)) != EOF)
+    {
+        if (current_pos >= *n - 1)
+        {
+            *n += 128;
+            new_lineptr = realloc(*lineptr, *n);
+            if (new_lineptr == NULL)
+                return (-1);
+            *lineptr = new_lineptr;
+        }
 
-		if (current_char == '\n')
-			break;
-	}
+        (*lineptr)[current_pos++] = (char)current_char;
 
-	if (current_pos == 0 && current_char == EOF)
-		return (-1);
+        if (current_char == '\n')
+            break;
+    }
 
-	(*lineptr)[current_pos] = '\0';
+    if (current_pos == 0 && current_char == EOF)
+        return (-1);
 
-	return (current_pos);
+    (*lineptr)[current_pos] = '\0';
+
+    return (current_pos);
 }
