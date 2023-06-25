@@ -48,6 +48,7 @@ void _push(stack_t **stack, unsigned int l_count)
 		new->next = NULL;
 		new->prev = tmp;
 		tmp->next = new;
+		*stack = new;
 	}
 }
 
