@@ -48,7 +48,6 @@ void _push(stack_t **stack, unsigned int l_count)
 		new->next = NULL;
 		new->prev = tmp;
 		tmp->next = new;
-		*stack = new;
 	}
 }
 
@@ -64,7 +63,7 @@ void _pall(stack_t **stack, unsigned int l_count)
 
 	if (stack == NULL || *stack == NULL)
 		return;
-	curr = (*stack)->next;
+	curr = *stack;
 
 	while (curr)
 	{
