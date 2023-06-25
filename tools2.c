@@ -51,7 +51,7 @@ bool is_integer(const char *str)
 		str++;
 	}
 
-	while (*str != '\0')
+	while (*str != '\0' && *str != '\n')
 	{
 		if (*str < '0' || *str > '9')
 		{
