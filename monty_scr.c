@@ -101,6 +101,9 @@ void (*get_opcode(char *opcode))(stack_t**, unsigned int)
 	instruction_t opcode_fnc[] = {
 		{"push", _push},
 		{"pall", _pall},
+		{"pint", _pint},
+		{"pop", _pop},
+		{"swap", _swap},
 		{NULL, NULL}
 	};
 	int a;
