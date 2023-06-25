@@ -33,11 +33,10 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
                 return (-1);
             *lineptr = new_lineptr;
         }
-
-        (*lineptr)[current_pos++] = (char)current_char;
-
         if (current_char == '\n')
             break;
+
+        (*lineptr)[current_pos++] = (char)current_char;
     }
 
     if (current_pos == 0 && current_char == EOF)
